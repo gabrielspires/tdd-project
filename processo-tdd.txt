@@ -1,0 +1,1 @@
+Na parte de cima estamos adicionando novas funcionalidades e refatorando a aplicação, na parte de unit tests estamos adicionando novos testes ou modificando testes existentes para poder testar as modificações no código e os testes que não são modificados são usados para garantir que não quebramos nada.
