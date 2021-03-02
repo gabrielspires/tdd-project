@@ -3,15 +3,6 @@ from lists.models import Item
 
 
 class HomePageTest(TestCase):
-    def test_displays_all_list_items(self):
-        Item.objects.create(text="itemey 1")
-        Item.objects.create(text="itemey 2")
-
-        response = self.client.get("/")
-
-        self.assertIn("itemey 1", response.content.decode())
-        self.assertIn("itemey 2", response.content.decode())
-
     def test_uses_home_template(self):
         response = self.client.get("/")
         self.assertTemplateUsed(response, "home.html")
@@ -51,3 +42,14 @@ class ItemModelTest(TestCase):
         second_saved_item = saved_items[1]
         self.assertEqual(first_saved_item.text, "O primeiro item")
         self.assertEqual(second_saved_item.text, "O segundo item")
+
+
+class ListViewTest(TestCase):
+    def test_displays_all_items(self):
+        Item.objects.create(text="itemey 1")
+        Item.objects.create(text="itemey 2")
+
+        response = self.client.get("/lists/the-only-list-in-the-world/")
+
+        self.assertContains(response, "itemey 1")
+        self.assertContains(response, "itemey 2")
